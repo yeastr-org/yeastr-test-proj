@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+# can't add yeastr, unpublished yet!
+build-backend = "setuptools.build_meta"
+
+[build-system.extra.yeastr]
+pythons."py313-none-any" = "/usr/lib/python-exec/python3.13/python"
+pythons."py38-none-any" = "/usr/lib/python-exec/python3.8/python"
+modules = [
+    "src/loops.py",
+    "src/macros.py",
+    "src/functional.py",
+]
+
+[tool.setuptools]
+# See MANIFEST.in (yeastr_info.py required)
+include-package-data = true  # actually default
+py-modules = ["yeastr_info"]
+# otherwise
+#[tool.setuptools.package-data]
+#yeastr_test = ["yeastr_info.py"]
+
+# seems to be autodetected
+# [tool.setuptools.packages.find]
+# where = ["src"]
+
+[project]
+name = "yeastr_test"
+version = "0.0.1"
+authors = [
+  { name="Castiglia Vincenzo", email="castix@autistici.org" },
+]
+description = "Example project for yeastr"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "PSF-2.0"
+
+[project.urls]
+Homepage = "https://github.com/CastixGitHub/yeastr-test"
+Issues = "https://github.com/CastixGitHub/yeastr-test/issues"
+
