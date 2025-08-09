@@ -21,6 +21,10 @@ class Room(ABC):
     @abstractmethod
     def neighbor(self, direction): ...
 
+    @property
+    def exits(self):
+        return self.directions.keys()
+
 class MainRoom(Room):
     name = 'Main'
     objects = ['PC', 'Bed']
@@ -100,8 +104,10 @@ with While(True) as mainloop:
         case ["go", ("north" | "south" | "east" | "west") as direction]:
             print(f'You tried to go {direction}')
             print('but nah...')
-        case ["go", direction]:
+        case ["go", direction] if direction in current_room.exits:
             current_room = current_room.neighbor(direction)
+        case ["go", _]:
+            print("Sorry, you can't go that way")
         case ["get", obj] | ["pick", "up", obj] | ["pick", obj, "up"]:
             character.get(obj, current_room)
         case ["drop", *objects, 'Hearth']:
