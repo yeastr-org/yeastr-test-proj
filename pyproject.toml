@@ -7,22 +7,19 @@ build-backend = "setuptools.build_meta"
 pythons."py313-none-any" = "/usr/lib/python-exec/python3.13/python"
 pythons."py38-none-any" = "/usr/lib/python-exec/python3.8/python"
 modules = [
-    "src/loops.py",
-    "src/macros.py",
-    "src/functional.py",
+    "src/yeastr_test/loops.py",
+    "src/yeastr_test/macros.py",
+    "src/yeastr_test/functional.py",
+    "src/yeastr_test/match_game.py",
 ]
 
 [tool.setuptools]
 # See MANIFEST.in (yeastr_info.py required)
 include-package-data = true  # actually default
 py-modules = ["yeastr_info"]
-# otherwise
-#[tool.setuptools.package-data]
-#yeastr_test = ["yeastr_info.py"]
 
-# seems to be autodetected
-# [tool.setuptools.packages.find]
-# where = ["src"]
+[tool.setuptools.packages.find]
+where = ["yeastr_info.py", "src"]
 
 [project]
 name = "yeastr_test"
