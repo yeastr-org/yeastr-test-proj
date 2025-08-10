@@ -1,5 +1,24 @@
 from abc import ABC, abstractmethod
 
+actions = [
+    {"text": "ok", "color": "red"},
+    {"text": "<b>ok</b>", "color": "red", "style": "bold"},
+    {"sleep": "1s"},
+    {"sound": "file:///path.oga", "format": "ogg"},
+    {"sound": "file:///path.mp9", "format": "mp9"},
+]
+for action in actions:
+    match action:
+        case {"text": message, "color": c}:
+            print(f'ui.set_text_color({c})')
+            print(f'ui.display({message})')
+        case {"sleep": duration}:
+            print(f'ui.wait({duration})')
+        case {"sound": url, "format": "ogg"}:
+            print(f'ui.play({url})')
+        case {"sound": _, "format": _}:
+            print('warning("Unsupported audio format")')
+
 @def_macro()
 def describe_macro():
     print(self.name)
@@ -83,9 +102,25 @@ class Character:
             print('You looked hard, then started to look inside your body, you\'re now dead in a pool of blood')
             raise Break('mainloop')
 
+class Event:  # such a mock, multithreading events...
+    def __init__(self):
+        self.data = False
+    def get(self):
+        return self.data.pop() if self.data else False
+    def set(self, evt):
+        self.data = [evt]
+
+class Click:
+    def __init__(self, position):
+        self.position = position
+
+class KeyPress:
+    def __init__(self, kn):
+        self.key_name = kn
 
 character = Character()
 current_room = MainRoom()
+event = Event()
 
 
 with While(True) as mainloop:
@@ -117,5 +152,29 @@ with While(True) as mainloop:
             print(f'dropping {objects}')
             for obj in objects:
                 character.drop(obj, current_room)
+        case ["click", x, y] if 'PC' in character.objects:
+            print('emulating click', x, y)
+            event.set(Click(position=(x, y)))
+        case ["press", key_name] if 'PC' in character.objects:
+            print('emulating keypress', key_name)
+            event.set(KeyPress(key_name))
         case _:
             print(f"Sorry, I couldn't understand {command!r}")
+
+    match event.get():
+        case Click(position=(x, y)):
+            print(f'You definitly clicked {x=} {y=}')
+        #waitasec
+        #case KeyPress(key_name="Q") | Quit():
+        #    mainloop.Break
+        case KeyPress(key_name="up_arrow"):
+            current_room = current_room.neighbor('north')
+        case KeyPress(key_name="s") if 'Bed' in character.objects:
+            print('zzz')
+        case KeyPress():
+            print('keystroke ignored')
+            pass # Ignore other keystrokes
+        case False:
+            print('no event')
+        case other_event:
+            raise ValueError(f"Unrecognized event: {other_event}")
