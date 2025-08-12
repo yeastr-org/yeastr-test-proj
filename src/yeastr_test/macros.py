@@ -1,6 +1,3 @@
-from yeastr.bootstrapped import def_macro, with_macros
-
-
 @def_macro(hygienic=False)
 def m_hf(b):
     if a > 3:
@@ -15,7 +12,6 @@ def m_ht(b):
     if b > 3:
         c = -3
 
-@with_macros(debug=True)
 def test_hygiene():
     for hyg in (True, False):
         a = 2
@@ -53,9 +49,47 @@ def printout(msg):
     with mIf(severity > 0):
         print(msg)
 
-@with_macros(debug=True)
 def letssee():
-    # without defer_expansion, it's currently broken
+    printout('ciao', severity=1)
+    printout('no', severity=0)
+    printout('no')
+
+letssee()
+
+# Now we want to make sure we can retain macros after the build
+@def_macro(strip=False)
+def preserved_macro(as_fn):
+    print((msg := 'dangerous, used as function'
+                  if as_fn else
+                  'macro preserved'))
+
+
+preserved_macro(True, defer_expansion=True)
+try:
+    assert msg is None
+except NameError:
+    ...
+
+@with_macros()
+def correct_preserved_usage():
+    preserved_macro(False, defer_expansion=True)
+    assert msg == 'macro preserved', 'Failed'
+
+correct_preserved_usage()
+
+def also_expandable_at_build_time():
+    preserved_macro(False)
+    assert msg == 'macro preserved', 'Failed'
+
+also_expandable_at_build_time()
+
+@def_macro(severity=-1, mLang=True, strip=False)
+def printout(msg):
+    with mIf(severity > 0):
+        print(msg)
+
+@with_macros()
+def letssee():
     printout('ciao', severity=1, defer_expansion=True)
     printout('no', severity=0, defer_expansion=True)
     printout('no', defer_expansion=True)

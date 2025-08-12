@@ -27,12 +27,15 @@ version = "0.0.1"
 authors = [
   { name="Castiglia Vincenzo", email="castix@autistici.org" },
 ]
-description = "Example project for yeastr"
+description = "Example project for yeastr using src layout"
 readme = "README.md"
-requires-python = ">=3.8"
 license = "PSF-2.0"
+requires-python = ">=3.8"
+dependencies = [
+    "yeastr",
+]
 
 [project.urls]
-Homepage = "https://github.com/CastixGitHub/yeastr-test"
-Issues = "https://github.com/CastixGitHub/yeastr-test/issues"
+Homepage = "https://github.com/CastixGitHub/yeastr-test-proj"
+Issues = "https://github.com/CastixGitHub/yeastr-test-proj/issues"
 
