@@ -127,3 +127,12 @@ def test_it_nested():
     outer2(defer_expansion=True)
 
 test_it_nested()
+
+
+# ok, so you can use @def_macro without ()
+
+@def_macro
+def my_m():
+    print('okay')
+
+my_m()
