@@ -83,6 +83,8 @@ def also_expandable_at_build_time():
 
 also_expandable_at_build_time()
 
+# Now you can compare "the same example" at import time
+
 @def_macro(severity=-1, mLang=True, strip=False)
 def printout(msg):
     with mIf(severity > 0):
@@ -95,3 +97,33 @@ def letssee():
     printout('no', defer_expansion=True)
 
 letssee()
+
+# Let's make sure you can nest macro definitions
+
+@def_macro()
+def inner():
+    print('inner')
+
+@def_macro()
+def outer():
+    inner()
+    inner()
+
+outer()  # expecting two print('inner')
+
+# Well, does that also work at import time?
+
+@def_macro(strip=False)
+def inner2():
+    print('inner2 it')
+
+@def_macro(strip=False)
+def outer2():
+    inner2(defer_expansion=True)
+    inner2(defer_expansion=True)
+
+@with_macros(debug=True)
+def test_it_nested():
+    outer2(defer_expansion=True)
+
+test_it_nested()
