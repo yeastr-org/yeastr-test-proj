@@ -1,0 +1,28 @@
+why did u switch hygienic on?
+all right
+-3
+all right
+ciao
+added preserved_macro to import-time macros
+dangerous, used as function
+copying preserved_macro
+macro preserved
+macro preserved
+added printout to import-time macros
+copying printout
+copying printout
+copying printout
+ciao
+inner
+inner
+added inner2 to import-time macros
+added outer2 to import-time macros
+copying outer2
+copying inner2
+copying inner2
+def test_it_nested():
+    print('inner2 it')
+    print('inner2 it')
+inner2 it
+inner2 it
+okay

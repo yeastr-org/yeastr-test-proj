@@ -164,9 +164,8 @@ with While(True) as mainloop:
     match event.get():
         case Click(position=(x, y)):
             print(f'You definitly clicked {x=} {y=}')
-        #waitasec
-        #case KeyPress(key_name="Q") | Quit():
-        #    mainloop.Break
+        case KeyPress(key_name="Q") | KeyPress(key_name="q"):
+            mainloop.Break
         case KeyPress(key_name="up_arrow"):
             current_room = current_room.neighbor('north')
         case KeyPress(key_name="s") if 'Bed' in character.objects:
