@@ -1,0 +1,32 @@
+10c10
+< <         except Break as exc:
+---
+> <         except Continue as exc:
+12c12
+< >         except Continue as exc:
+---
+> >         except Break as exc:
+14c14
+< <                 break
+---
+> <                 continue
+16c16
+< >                 continue
+---
+> >                 break
+18c18
+< <         except Continue as exc:
+---
+> <         except Break as exc:
+20c20
+< >         except Break as exc:
+---
+> >         except Continue as exc:
+22c22
+< <                 continue
+---
+> <                 break
+24c24
+< >                 break
+---
+> >                 continue

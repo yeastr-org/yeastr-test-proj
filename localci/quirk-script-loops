@@ -1,0 +1,40 @@
+12c12
+<     for (__for__outer_i, __for__outer_it) in enumerate(range(10)):
+---
+>     for __for__outer_i, __for__outer_it in enumerate(range(10)):
+18c18
+<             for (__for__inner_i, __for__inner_it) in enumerate(range(__for__outer_it)):
+---
+>             for __for__inner_i, __for__inner_it in enumerate(range(__for__outer_it)):
+25c25
+<         except Continue as exc:
+---
+>         except Break as exc:
+29c29
+<                 continue
+---
+>                 break
+31c31
+<         except Break as exc:
+---
+>         except Continue as exc:
+35c35
+<                 break
+---
+>                 continue
+108c108
+<     for (__for__chunkloop_i, __for__chunkloop_it) in enumerate(['asd', 'qwe']):
+---
+>     for __for__chunkloop_i, __for__chunkloop_it in enumerate(['asd', 'qwe']):
+111c111
+<             for (__for__charloop_i, __for__charloop_it) in enumerate(chunk):
+---
+>             for __for__charloop_i, __for__charloop_it in enumerate(chunk):
+154c154
+<     for (__for__chloop_i, __for__chloop_it) in enumerate('asd'):
+---
+>     for __for__chloop_i, __for__chloop_it in enumerate('asd'):
+169c169
+<         (x, y) = __for__pointsloop_it
+---
+>         x, y = __for__pointsloop_it
