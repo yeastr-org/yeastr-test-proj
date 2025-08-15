@@ -1,3 +1,5 @@
+# Look at the output of this example saved into localci/out/src_macros_py*
+
 @def_macro(hygienic=False)
 def m_hf(b):
     if a > 3:

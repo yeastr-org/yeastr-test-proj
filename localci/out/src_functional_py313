@@ -1,0 +1,28 @@
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[5, 6, 7, 8, 9]
+
+['aA', 'bB']
+[('b', 'B')]
+{'aa': 'AA', 'bb': 'BB'}
+{'b': 'B', 'bb': 'BB'}
+{'a': 'aa', 'b': 'bb'}
+{3, 4}
+[6, 7, 8, 9, 10]
+{8, 9, 10}
+{'aaaaaa': 'AAAAAA', 'aaaaaaaaa': 'AAAAAAAAA'}
+
+well, that's unfixable?
+[('a', 'A', 'a', 'A'), ('b', 'B', 'b', 'B')]
+well, that is expected, right? (just name it kv)
+
+[('a', 'A')]
+{'a': 'A'}
+[('aa', 'AA')]
+[('aa', 'AA')]
+{'aa': 'AA'}
+
+{'a': 'a', 'A': 'A'}
+{0: 0, 2: 4, 4: 16, 6: 36, 8: 64}
+
+['aA', 'bB']
+{'aa': 'AA', 'bb': 'BB'}
