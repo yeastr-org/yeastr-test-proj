@@ -1,0 +1,23 @@
+added m_hf to import-time macros
+added m_ht to import-time macros
+copying m_hf
+copying m_ht
+why did u switch hygienic on?
+all right
+-3
+all right
+added printout to import-time macros
+copying printout
+copying printout
+copying printout
+ciao
+added inner to import-time macros
+added outer to import-time macros
+copying outer
+copying inner
+copying inner
+def test_it_nested():
+    print('inner')
+    print('inner')
+inner
+inner

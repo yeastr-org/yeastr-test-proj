@@ -1,28 +1,2 @@
-8,10c8,10
-<     print([k + v for (k, v) in d.items()])
-<     print([(k, v) for (k, v) in d.items() if v == 'B'])
-<     print({k * 2: v * 2 for (k, v) in d.items()})
----
->     print([k + v for k, v in d.items()])
->     print([(k, v) for k, v in d.items() if v == 'B'])
->     print({k * 2: v * 2 for k, v in d.items()})
-12,13c12,13
-<         print({k: v for (k, v) in (d | {k * 2: v * 2 for (k, v) in d.items()}).items() if k.startswith('b')})
-<     print({k: k * 2 for (k,) in d.keys()})
----
->         print({k: v for k, v in (d | {k * 2: v * 2 for k, v in d.items()}).items() if k.startswith('b')})
->     print({k: k * 2 for k, in d.keys()})
-17c17
-<     print({k * 3: v * 3 for (k, v) in {'aa': 'AA', 'bb': 'BB', 'aaa': 'AAA'}.items() if k.startswith('a')})
----
->     print({k * 3: v * 3 for k, v in {'aa': 'AA', 'bb': 'BB', 'aaa': 'AAA'}.items() if k.startswith('a')})
 20a21
 > {'b': 'B', 'bb': 'BB'}
-44c45
-<     print({k: v for (k, v) in d.items() if (bound := (lambda k, v: k.startswith('a')))(k, v)})
----
->     print({k: v for k, v in d.items() if (bound := (lambda k, v: k.startswith('a')))(k, v)})
-47c48
-<     print({k * 2: v * 2 for (k, v) in d.items() if (fil := (lambda k, v: k == 'a'))(k, v)})
----
->     print({k * 2: v * 2 for k, v in d.items() if (fil := (lambda k, v: k == 'a'))(k, v)})

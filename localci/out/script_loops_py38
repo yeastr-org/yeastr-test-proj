@@ -1,0 +1,173 @@
+def _fix_sentence_endings(self, chunks):
+    __for__loop_iter = chunks
+    __for__loop_end = len(chunks) - 1
+    __for__loop_i = 0
+    while __for__loop_i < __for__loop_end:
+        if __for__loop_iter[__for__loop_i + 1] == ' ':
+            __for__loop_iter[__for__loop_i + 1] = '  '
+            __for__loop_i += 1
+        __for__loop_i += 1
+
+def asd():
+    for (__for__outer_i, __for__outer_it) in enumerate(range(10)):
+        try:
+            if __for__outer_i == 0:
+                print('continuiing, not to trigger inner.orelse the first time')
+                
+                raise Continue('outer')
+            for (__for__inner_i, __for__inner_it) in enumerate(range(__for__outer_it)):
+                print(__for__outer_i, __for__outer_it, __for__inner_i, __for__inner_it)
+                if __for__inner_it == 2:
+                    print('breaking out of outer loop')
+                    raise Break('outer')
+            else:
+                print(f"{__for__outer_i} inner didn't break at all {list(range(__for__outer_it))}")
+        except Continue as exc:
+            if exc.n not in ('outer',):
+                raise TransformError('unknown loop label: %s' % exc.n)
+            if exc.n == 'outer':
+                continue
+            raise
+        except Break as exc:
+            if exc.n not in ('outer',):
+                raise TransformError('unknown loop label: %s' % exc.n)
+            if exc.n == 'outer':
+                break
+            raise
+    else:
+        print("outer didn't break at all")
+    print('so we have', __for__outer_i, __for__outer_it, __for__inner_i, __for__inner_it)
+continuiing, not to trigger inner.orelse the first time
+1 1 0 0
+1 inner didn't break at all [0]
+2 2 0 0
+2 2 1 1
+2 inner didn't break at all [0, 1]
+3 3 0 0
+3 3 1 1
+3 3 2 2
+breaking out of outer loop
+so we have 3 3 2 2
+
+def jump_allowed():
+    for __for__what_it in [True, False]:
+        try:
+            while True:
+                try:
+                    while True:
+                        if __for__what_it:
+                            raise Break('infinite')
+                        else:
+                            raise Break('jump')
+                except Break as exc:
+                    if exc.n == 'infinite':
+                        break
+                    raise
+        except Break as exc:
+            if exc.n == 'jump':
+                print('yep u jumped here')
+        else:
+            print('infinite loop stopped')
+        print('then...')
+infinite loop stopped
+then...
+yep u jumped here
+then...
+
+def jump_disallow_wrong_attempt():
+    for __for__loop_it in range(3):
+        raise Break('jump')
+this is impossible to catch, as there is no handler
+def jump_disallowed():
+    try:
+        for __for__loop_it in range(3):
+            try:
+                if False:
+                    raise Break('loop')
+                raise Break('jump')
+            except Break as exc:
+                if exc.n not in ('loop',):
+                    raise TransformError('unknown loop label: %s' % exc.n)
+                if exc.n == 'loop':
+                    break
+                raise
+    except TransformError:
+        print('you disallowed it')
+you disallowed it
+def test_break_without_if():
+    while True:
+        try:
+            raise Break('again')
+        except Break as exc:
+            if exc.n not in ('again',):
+                raise TransformError('unknown loop label: %s' % exc.n)
+            if exc.n == 'again':
+                break
+            raise
+def name_bind():
+    for (__for__chunkloop_i, __for__chunkloop_it) in enumerate(['asd', 'qwe']):
+        try:
+            chunk = __for__chunkloop_it
+            for (__for__charloop_i, __for__charloop_it) in enumerate(chunk):
+                ch = __for__charloop_it
+                if ch == 'w':
+                    raise Break('chunkloop')
+        except Break as exc:
+            if exc.n not in ('chunkloop',):
+                raise TransformError('unknown loop label: %s' % exc.n)
+            if exc.n == 'chunkloop':
+                break
+            raise
+    print(f'stopped at {__for__chunkloop_i} with "{chunk}"[{__for__charloop_i}] = {ch}')
+stopped at 1 with "qwe"[1] = w
+def name_bind_indexed():
+    perf_times = 5
+    chunks = ['asd', 'qwe']
+    __for__chunkloop_iter = chunks
+    __for__chunkloop_i = 0
+    while __for__chunkloop_i < len(__for__chunkloop_iter):
+        try:
+            chunk = __for__chunkloop_iter[__for__chunkloop_i]
+            for __for__charloop_it in chunk:
+                ch = __for__charloop_it
+                if ch == 'w':
+                    print(f'chunk is {chunk}')
+                    __for__chunkloop_iter[__for__chunkloop_i] = 'rty'
+                    print(f'chunk is still {chunk}')
+                    print(f'but see {__for__chunkloop_iter[__for__chunkloop_i]} and {chunks}?')
+                    for _ in range(perf_times):
+                        chunk
+                    for _ in range(perf_times):
+                        __for__chunkloop_iter[__for__chunkloop_i]
+                    raise Break('chunkloop')
+            __for__chunkloop_i += 1
+        except Break as exc:
+            if exc.n not in ('chunkloop',):
+                raise TransformError('unknown loop label: %s' % exc.n)
+            if exc.n == 'chunkloop':
+                break
+            raise
+chunk is qwe
+chunk is still qwe
+but see rty and ['asd', 'rty']?
+def non_enumerating():
+    for (__for__chloop_i, __for__chloop_it) in enumerate('asd'):
+        c = __for__chloop_it
+        print(c.upper())
+    print(__for__chloop_i)
+    for __for__chloop2_it in 'asd':
+        print(__for__chloop2_it.upper())
+A
+S
+D
+2
+A
+S
+D
+def also_unpack():
+    for __for__pointsloop_it in [(0, 0), (1, 0), (2, 1)]:
+        (x, y) = __for__pointsloop_it
+        print(x, y)
+0 0
+1 0
+2 1
