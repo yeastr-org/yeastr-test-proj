@@ -22,17 +22,17 @@ def asd():
                     raise Break('outer')
             else:
                 print(f"{__for__outer_i} inner didn't break at all {list(range(__for__outer_it))}")
-        except Continue as exc:
-            if exc.n not in ('outer',):
-                raise TransformError('unknown loop label: %s' % exc.n)
-            if exc.n == 'outer':
-                continue
-            raise
         except Break as exc:
             if exc.n not in ('outer',):
                 raise TransformError('unknown loop label: %s' % exc.n)
             if exc.n == 'outer':
                 break
+            raise
+        except Continue as exc:
+            if exc.n not in ('outer',):
+                raise TransformError('unknown loop label: %s' % exc.n)
+            if exc.n == 'outer':
+                continue
             raise
     else:
         print("outer didn't break at all")
