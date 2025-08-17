@@ -1,20 +1,5 @@
-def something():
-    print([x + 1 for x in range(10)])
-    print([x for x in range(10) if x > 4])
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 [5, 6, 7, 8, 9]
-def something_more():
-    d = {'a': 'A', 'b': 'B'}
-    print([k + v for (k, v) in d.items()])
-    print([(k, v) for (k, v) in d.items() if v == 'B'])
-    print({k * 2: v * 2 for (k, v) in d.items()})
-    if version_info >= (3, 11):
-        print({k: v for (k, v) in (d | {k * 2: v * 2 for (k, v) in d.items()}).items() if k.startswith('b')})
-    print({k: k * 2 for (k,) in d.keys()})
-    print({v for v in [0, 1, 2, 3, 4] if v > 2})
-    print([v + 3 for v in [0, 2, 3, 4, 5, 6, 7] if v > 2])
-    print({v + 3 for v in [5, 5, 5, 5, 6, 7] if v > 2})
-    print({k * 3: v * 3 for (k, v) in {'aa': 'AA', 'bb': 'BB', 'aaa': 'AAA'}.items() if k.startswith('a')})
 ['aA', 'bB']
 [('b', 'B')]
 {'aa': 'AA', 'bb': 'BB'}
@@ -23,14 +8,6 @@ def something_more():
 [6, 7, 8, 9, 10]
 {8, 9, 10}
 {'aaaaaa': 'AAAAAA', 'aaaaaaaaa': 'AAAAAAAAA'}
-def something_exaustive():
-    d = {'a': 'A', 'b': 'B'}
-    try:
-        print([(bound := (lambda k, v: k + v))(aboba) for aboba in d.items()])
-    except TypeError:
-        print("well, that's unfixable?")
-    print([(bound := (lambda k: k + k))(aboba) for aboba in d.items()])
-    print('well, that is expected, right? (just name it kv)')
 well, that's unfixable?
 [('a', 'A', 'a', 'A'), ('b', 'B', 'b', 'B')]
 well, that is expected, right? (just name it kv)
@@ -38,13 +15,6 @@ emapd: arg 1 should be lambda: 2-tuple
 try with performance_required=False
 emapd((bound := (lambda k, v: {k * 2: v * 2})), d.items())
 you should never need to expect a TransformError
-def some_filtering():
-    d = {'a': 'A', 'b': 'B'}
-    print([aboba for aboba in d.items() if (bound := (lambda kv: kv[0].startswith('a')))(aboba)])
-    print({k: v for (k, v) in d.items() if (bound := (lambda k, v: k.startswith('a')))(k, v)})
-    print([(kv[0] * 2, kv[1] * 2) for kv in d.items() if (fil := (lambda kv: kv[0] == 'a'))(kv)])
-    print([(_map := (lambda kv: (kv[0] * 2, kv[1] * 2)))(kv) for kv in d.items() if kv[0] == 'a'])
-    print({k * 2: v * 2 for (k, v) in d.items() if (fil := (lambda k, v: k == 'a'))(k, v)})
 [('a', 'A')]
 {'a': 'A'}
 [('aa', 'AA')]
@@ -54,18 +24,7 @@ efiltermapd: arg 1 should be lambda: 2-tuple
 try with performance_required=False
 efiltermapd(lambda k, v: k == 'a', (_map := (lambda k, v: (k * 2, v * 2))), d.items())
 you should never need to expect a TransformError
-def some_filtering():
-    d = {'a': 'A', 'b': 'B'}
-
-    def _map(k, v):
-        return (k * 2, v * 2)
-    print(efiltermapd(lambda k, v: k == 'a', _map, d.items()))
-    print({n: n ** 2 for n in range(10) if n % 2 == 0})
 {'a': 'a', 'A': 'A'}
 {0: 0, 2: 4, 4: 16, 6: 36, 8: 64}
-def fix_unfixable():
-    d = {'a': 'A', 'b': 'B'}
-    print(emap((bound := (lambda k, v: k + v)), d.items()))
-    print(emapd((bound := (lambda k, v: (k * 2, v * 2))), d.items()))
 ['aA', 'bB']
 {'aa': 'AA', 'bb': 'BB'}

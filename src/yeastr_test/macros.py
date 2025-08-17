@@ -124,7 +124,7 @@ def outer2():
     inner2(defer_expansion=True)
     inner2(defer_expansion=True)
 
-@with_macros(debug=True)
+@with_macros()
 def test_it_nested():
     outer2(defer_expansion=True)
 

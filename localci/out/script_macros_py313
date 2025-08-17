@@ -16,8 +16,5 @@ added outer to import-time macros
 copying outer
 copying inner
 copying inner
-def test_it_nested():
-    print('inner')
-    print('inner')
 inner
 inner

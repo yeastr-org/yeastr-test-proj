@@ -20,9 +20,6 @@ added outer2 to import-time macros
 copying outer2
 copying inner2
 copying inner2
-def test_it_nested():
-    print('inner2 it')
-    print('inner2 it')
 inner2 it
 inner2 it
 okay

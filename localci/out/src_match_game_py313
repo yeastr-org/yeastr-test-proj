@@ -1,0 +1,65 @@
+ui.set_text_color(red)
+ui.display(ok)
+ui.set_text_color(red)
+ui.display(<b>ok</b>)
+ui.wait(1s)
+ui.play(file:///path.oga)
+warning("Unsupported audio format")
+In your pockets: []
+no event
+In your pockets: ['PC']
+emulating keypress Q
+GAME OVER
+In your pockets: []
+You tried to go east
+but nah...
+no event
+In your pockets: []
+Room: Main
+Objects: PC, Bed
+Directions: est=Kitchen, north=Mirrors
+no event
+In your pockets: []
+no event
+In your pockets: ['Bed']
+Room: Main
+Objects: PC
+Directions: est=Kitchen, north=Mirrors
+no event
+In your pockets: ['Bed']
+no event
+In your pockets: ['Bed', 'PC']
+Room: Main
+Objects: 
+Directions: est=Kitchen, north=Mirrors
+no event
+In your pockets: ['Bed', 'PC']
+emulating keypress s
+zzz
+In your pockets: ['Bed', 'PC']
+dropping ['PC', 'Bed']
+no event
+In your pockets: []
+Sorry, I couldn't understand 'press s'
+no event
+In your pockets: []
+no event
+In your pockets: []
+You became a narcisist, forgot to eat then died
+GAME OVER
+In your pockets: []
+no event
+In your pockets: ['PC']
+emulating click 50 100
+You definitly clicked x='50' y='100'
+In your pockets: ['PC']
+emulating keypress s
+keystroke ignored
+In your pockets: ['PC']
+no event
+In your pockets: ['PC', 'Bed']
+emulating keypress s
+zzz
+In your pockets: ['PC', 'Bed']
+Goodbye!
+GAME OVER
