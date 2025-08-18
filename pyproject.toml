@@ -7,6 +7,8 @@ build-backend = "setuptools.build_meta"
 pythons."py313-none-any" = "/usr/lib/python-exec/python3.13/python"
 pythons."py38-none-any" = "/usr/lib/python-exec/python3.8/python"
 modules = [
+    # define the modules to be transformed one at a time.
+    # why? because macros from the previous one can be used.
     "src/yeastr_test/loops.py",
     "src/yeastr_test/macros.py",
     "src/yeastr_test/functional.py",
