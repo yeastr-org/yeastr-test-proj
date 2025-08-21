@@ -18,3 +18,7 @@ copying inner
 copying inner
 inner
 inner
+added a_cmp to import-time macros
+copying a_cmp
+Compare(left=Name(id='subj', ctx=Load()), ops=[Eq()], comparators=[Constant(value=3)])
+added wrong to import-time macros
