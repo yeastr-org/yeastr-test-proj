@@ -23,12 +23,13 @@ def inputs():
     yield 'press s'
     yield 'quit'
 
+    yield 'clickm 3 5 r'
+    yield 'clickd 3 5'
+    yield 'quit'
+
 inputs = inputs()
 match_game.input = lambda _: next(inputs)
 
-match_game.play()
-print('GAME OVER')
-match_game.play()
-print('GAME OVER')
-match_game.play()
-print('GAME OVER')
+for _ in range(4):
+    match_game.play()
+    print('GAME OVER')

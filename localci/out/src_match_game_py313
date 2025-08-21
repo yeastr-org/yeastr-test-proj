@@ -5,6 +5,7 @@ ui.display(<b>ok</b>)
 ui.wait(1s)
 ui.play(file:///path.oga)
 warning("Unsupported audio format")
+msg {'location': (3, 4), 'subsystem': 'some'}
 In your pockets: []
 no event
 In your pockets: ['PC']
@@ -61,5 +62,12 @@ In your pockets: ['PC', 'Bed']
 emulating keypress s
 zzz
 In your pockets: ['PC', 'Bed']
+Goodbye!
+GAME OVER
+In your pockets: []
+clicked (__match_args__) kind='r' x='3' y='5'
+In your pockets: []
+clicked (dataclass) kind='Right' x='3' y='5'
+In your pockets: []
 Goodbye!
 GAME OVER
