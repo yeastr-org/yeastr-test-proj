@@ -24,3 +24,5 @@ inner2 it
 inner2 it
 okay
 Compare(left=Name(id='subj', ctx=Load()), ops=[Eq()], comparators=[Constant(value=3)])
+{'red': 1, 'blue': 2, 'green': 3}
+{1: 'red', 2: 'blue', 3: 'green'}

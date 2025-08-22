@@ -187,3 +187,43 @@ print(ast.dump(
 #def wrong():
 #    exp1
 #    exp2
+
+# ----------------------------------------------------------------------
+# color_to_code = {
+#    "red": 1,
+#    "blue": 2,
+#    "green": 3,
+#}
+# code_to_color = {
+#    1: "red",
+#    2: "blue",
+#    3: "yellow", # error
+#}
+#would become:
+#bijection! color_to_code, code_to_color:
+#    "red" = 1
+#    "blue" = 2
+#    "green" = 3
+# But lacks of example bijection! definition
+
+@def_macro(mLang=True)
+def bijection(yr_name_a, yr_name_b, yr_data_a):
+    name_a = data_a
+    name_b = mEval({v: k for k, v in data_a.items()})
+
+bijection(color_to_code, code_to_color, {
+    1: 'red', 2: 'blue', 3: 'green',
+})
+print(code_to_color)
+print(color_to_code)
+# The rules for mEval are:
+# - all data must be available AOT
+#   - (eg: can't use name_a.items() above)
+# - can't inject any module or globals for evaluation
+# - the evaluated object must have __str__
+# - and __str__ must return valid python code
+# so it works with data dicts, str, bytes, numbers...
+
+# we added yr_ parameters:
+# they replace the actual parameter with the name
+# (so they don't get a binding for the macro)
