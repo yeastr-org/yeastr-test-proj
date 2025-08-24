@@ -1,0 +1,40 @@
+[True, True, True]
+first print
+0 True
+1 True
+middle print
+2 True
+2 True again
+last print
+[True, True, False]
+first print
+0 True
+1 True
+middle print
+last print
+[True, False, True]
+first print
+0 True
+middle print
+2 True
+2 True again
+last print
+[True, False, False]
+first print
+0 True
+middle print
+last print
+[False, True, False]
+first print
+middle print
+last print
+---------- test 2
+[True, True, True]
+1 True
+2 True
+[True, True, False]
+1 True
+[True, False, True]
+2 True
+[True, False, False]
+[False, True, False]

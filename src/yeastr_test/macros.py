@@ -58,6 +58,8 @@ def letssee():
 
 letssee()
 
+# see the other macros_test for furter testing of mLang...
+
 # Now we want to make sure we can retain macros after the build
 @def_macro(strip=False)
 def preserved_macro(as_fn):

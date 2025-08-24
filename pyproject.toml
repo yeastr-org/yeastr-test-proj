@@ -14,6 +14,7 @@ modules = [
     "src/yeastr_test/functional.py",
     "src/yeastr_test/match_game.py",
     # "src/yeastr_test/test_match_game.py",
+    "src/yeastr_test/macros_test.py",
 ]
 
 [tool.setuptools]
