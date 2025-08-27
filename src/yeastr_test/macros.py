@@ -179,7 +179,6 @@ print(ast.dump(
 # awesome... ofc, this means after mLang, there must be only 1 expression left.
 # as you can see, you can use positional arguments,
 # and they can be whatever you want, won't get converted..
-# TODO: check they actually don't get converted
 # no new names are bound, just literal substitution.
 
 # an expr macro without mLang raises a TransformError

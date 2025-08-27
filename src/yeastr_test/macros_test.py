@@ -43,4 +43,40 @@ test_conditionals2(cfg=[True, False, False])
 print([False, True, False])
 test_conditionals2(cfg=[False, True, False])
 
+print('---------- test basic else')
+@def_macro(mLang=True)
+def test_basic_else():
+    with mIf(False):
+        ...
+    with mElse():
+        print('ok')
+
+test_basic_else()
+
+print('---------- test 3')
+@def_macro(cfg=None, mLang=True)
+def test_conditionals3():
+    with mIf(cfg[0] is True):
+        with mIf(cfg[1] is True):
+            print('1 True')
+        with mElse():
+            print('1 False')
+    with mElse():
+        print('0 False')
+    if True:
+        with mIf(cfg[2] is True):
+            print('2 True')
+        with mElse():
+            print('2 False')
+print([True, True, True])
+test_conditionals3(cfg=[True, True, True])
+print([True, True, False])
+test_conditionals3(cfg=[True, True, False])
+print([True, False, True])
+test_conditionals3(cfg=[True, False, True])
+print([True, False, False])
+test_conditionals3(cfg=[True, False, False])
+print([False, True, False])
+test_conditionals3(cfg=[False, True, False])
+
 
