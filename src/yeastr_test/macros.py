@@ -74,6 +74,8 @@ try:
 except NameError:
     ...
 
+from yeastr.as_decorator import with_macros
+
 @with_macros()
 def correct_preserved_usage():
     preserved_macro(False, defer_expansion=True)

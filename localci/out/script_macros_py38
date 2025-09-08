@@ -1,24 +1,17 @@
-added m_hf to import-time macros
-added m_ht to import-time macros
 copying m_hf
 copying m_ht
 why did u switch hygienic on?
 all right
 -3
 all right
-added printout to import-time macros
 copying printout
 copying printout
 copying printout
 ciao
-added inner to import-time macros
-added outer to import-time macros
 copying outer
 copying inner
 copying inner
 inner
 inner
-added a_cmp to import-time macros
 copying a_cmp
 Compare(left=Name(id='subj', ctx=Load()), ops=[Eq()], comparators=[Constant(value=3)])
-added wrong to import-time macros
