@@ -1,4 +1,3 @@
-include yeastr_info.py
 graft src
 global-exclude *.py[cod]
 global-exclude __pycache__

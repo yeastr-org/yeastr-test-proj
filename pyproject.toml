@@ -3,28 +3,6 @@ requires = ["setuptools >= 77.0.3"]
 # can't add yeastr, unpublished yet!
 build-backend = "setuptools.build_meta"
 
-[build-system.extra.yeastr]
-pythons."py313-none-any" = "/usr/lib/python-exec/python3.13/python"
-pythons."py38-none-any" = "/usr/lib/python-exec/python3.8/python"
-modules = [
-    # define the modules to be transformed one at a time.
-    # why? because macros from the previous one can be used.
-    "src/yeastr_test/loops.py",
-    "src/yeastr_test/macros.py",
-    "src/yeastr_test/functional.py",
-    "src/yeastr_test/match_game.py",
-    # "src/yeastr_test/test_match_game.py",
-    "src/yeastr_test/macros_test.py",
-]
-
-[tool.setuptools]
-# See MANIFEST.in (yeastr_info.py required)
-include-package-data = true  # actually default
-py-modules = ["yeastr_info"]
-
-[tool.setuptools.packages.find]
-where = ["yeastr_info.py", "src"]
-
 [project]
 name = "yeastr_test"
 version = "0.0.1"
