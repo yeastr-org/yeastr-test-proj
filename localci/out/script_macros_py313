@@ -1,17 +1,8 @@
-copying m_hf
-copying m_ht
 why did u switch hygienic on?
 all right
 -3
 all right
-copying printout
-copying printout
-copying printout
 ciao
-copying outer
-copying inner
-copying inner
 inner
 inner
-copying a_cmp
 Compare(left=Name(id='subj', ctx=Load()), ops=[Eq()], comparators=[Constant(value=3)])
