@@ -9,7 +9,7 @@ PN = 'yeastr_test'
 PV = '0.0.1'
 _dir = Path(here) / 'src' / PN
 
-for pep425 in (f'py{v}-none-any' for v in ('313', '38')):
+for pep425 in (f'py{v}-none-any' for v in ('314', '38')):
     for _filepath in (_dir / fname for fname in (
         'macros',
         'macros_test',
