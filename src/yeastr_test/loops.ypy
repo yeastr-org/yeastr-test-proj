@@ -157,3 +157,16 @@ with For('asd') as chloop2:  # do not enumerate
 # unpacking works as usual
 with For((x, y) in [(0, 0), (1, 0), (2, 1)]) as pointsloop:
     print(x, y)
+
+
+# -------------------- EXAMPLE 10
+# we have orempty :D
+with For(range(10)) as full:
+    ...
+with full.orempty:
+    assert False, 'FAILED'
+
+with For(range(0)) as nonfull:
+    ...
+with nonfull.orempty:
+    print('EMPTY')
