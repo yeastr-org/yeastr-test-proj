@@ -14,7 +14,7 @@ for pep425 in (f'py{v}-none-any' for v in ('313', '38')):
         'macros',
         'macros_test',
         'loops',
-        'functional',
+        'call2comp',
         'match_game',
         'test_match_game',
     )):
