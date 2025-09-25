@@ -164,9 +164,19 @@ with For((x, y) in [(0, 0), (1, 0), (2, 1)]) as pointsloop:
 with For(range(10)) as full:
     ...
 with full.orempty:
-    assert False, 'FAILED'
+    assert False, 'FAILED (slow)'
 
 with For(range(0)) as nonfull:
     ...
 with nonfull.orempty:
-    print('EMPTY')
+    print('EMPTY (slow)')
+
+with For([1, 2]) as full:
+    ...
+with full.orempty:
+    assert False, 'FAILED (fast)'
+
+with For([]) as nonfull:
+    ...
+with nonfull.orempty:
+    print('EMPTY (fast)')
