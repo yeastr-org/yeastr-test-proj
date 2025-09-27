@@ -161,22 +161,27 @@ with For((x, y) in [(0, 0), (1, 0), (2, 1)]) as pointsloop:
 
 # -------------------- EXAMPLE 10
 # we have orempty :D
-with For(range(10)) as full:
-    ...
+with For(range(10)) as full: ...
 with full.orempty:
     assert False, 'FAILED (slow)'
-
-with For(range(0)) as nonfull:
-    ...
+with For(range(0)) as nonfull: ...
 with nonfull.orempty:
     print('EMPTY (slow)')
 
-with For([1, 2]) as full:
-    ...
+# List, Tuples and List Comprehesions allow some trick
+with For([1, 2]) as full: ...
 with full.orempty:
     assert False, 'FAILED (fast)'
-
-with For([]) as nonfull:
-    ...
+with For([]) as nonfull: ...
 with nonfull.orempty:
     print('EMPTY (fast)')
+
+# also indexed (did not use "i" 'cause you may want to empty it while iterating)
+# well, in that case, do you still want to trigger the orempty?
+# well, in that case, should have been oNempty instead
+with For([1, 2], indexed=True) as full: ...
+with full.orempty:
+    assert False, 'FAILED (indexed)'
+with For([], indexed=True) as nonfull: ...
+with nonfull.orempty:
+    print('EMPTY (indexed)')
