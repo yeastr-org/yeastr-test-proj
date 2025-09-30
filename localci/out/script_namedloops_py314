@@ -11,13 +11,6 @@ continuiing, not to trigger inner.orelse the first time
 breaking out of outer loop
 so we have 3 3 2 2
 
-infinite loop stopped
-then...
-yep u jumped here
-then...
-
-this is impossible to catch, as there is no handler
-you disallowed it
 stopped at 1 with "qwe"[1] = w
 chunk is qwe
 chunk is still qwe
