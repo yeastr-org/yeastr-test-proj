@@ -19,7 +19,7 @@ for pep425 in (f'py{v}-none-any' for v in ('314', '38')):
         'test_match_game',
     )):
         with open(f'{_filepath}.ypy', 'r') as in_:
-            ying = BuildTimeTransformer(in_.read(), pep425, autoimport=True)
+            ying = BuildTimeTransformer(in_.read(), pep425, autoimport='bootstrapped')
             with open(f'{_filepath}.py', 'w') as out:
                 out.write(ying.yang(_macros))
     # BUILD
