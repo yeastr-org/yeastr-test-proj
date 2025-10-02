@@ -153,3 +153,23 @@ with full.orempty:
 with For([], indexed=True) as nonfull: ...
 with nonfull.orempty:
     print('EMPTY (indexed)')
+
+# -------------------- EXAMPLE 11
+# We need more tests!!
+with For(range(3)) as l0:
+    with For('abcd') as l1:
+        print(l1.it)
+        with For('zzz') as l2:
+            if l1.it == 'c':
+                l0.Continue
+print()
+
+with For(range(3)) as l0:
+    with For(range(3)) as l1:
+        with For(range(3)) as l2:
+            l1.Break
+    with For(range(3)) as l1a:
+        print('ok')
+        l0.Break
+
+print()

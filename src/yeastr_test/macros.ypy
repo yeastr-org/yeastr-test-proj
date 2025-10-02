@@ -19,7 +19,7 @@ def test_hygiene():
         a = 2
         # NOPE, u cannot (m_ht if hyg else m_hf)(4)
         if hyg: m_ht(4)
-        else: m_hf(4)
+        else:   m_hf(4)
         try:
             print(c)
         except NameError:
