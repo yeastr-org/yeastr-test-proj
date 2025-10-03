@@ -4,15 +4,14 @@ print(emap(lambda x: x + 1, range(10)))
 print(efilter(lambda x: x > 4, range(10)))
 
 print()
-d = {'a': 'A', 'b': 'B'}
+d: dict = {'a': 'A', 'b': 'B'}
 print(emap(lambda k, v: k + v, d.items()))
 print(efilter(lambda k, v: v == 'B', d.items()))
 print(emapd(lambda k, v: (k*2, v*2), d.items()))
-if version_info >= (3, 11):
-    print(efilterd(
-        lambda k, v: k.startswith('b'),
-        (d | emapd(lambda k, v: (k*2, v*2), d.items())).items()
-    ))
+print(efilterd(
+    lambda k, v: k.startswith('b'),
+    (d | emapd(lambda k, v: (k*2, v*2), d.items())).items()
+))
 print(emapd(lambda k: (k, k*2), d.keys()))
 print(efilters(lambda v: v > 2, [0, 1, 2, 3, 4]))
 print(efiltermap(lambda v: v > 2, lambda v: v + 3, [0, 2, 3, 4, 5, 6, 7]))
