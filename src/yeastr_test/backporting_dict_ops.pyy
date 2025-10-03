@@ -35,3 +35,4 @@ dct = 0
 print(dct | 1)
 
 # and we don't support | chaining yet
+print({} | {'a': 'A'} | {'b': 'B'})
