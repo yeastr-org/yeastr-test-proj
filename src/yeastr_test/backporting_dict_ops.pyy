@@ -1,0 +1,37 @@
+my_1stdict = {}
+print(my_1stdict | {'a': 'A'})
+
+my_1stdict |= {'a': 'A'}
+print(my_1stdict)
+
+my_2nddict = my_1stdict | {'b': 'B'}
+print(my_2nddict)
+
+my_3rddict = my_1stdict | my_2nddict
+print(my_3rddict)
+
+def somefn(d1: dict, d2: dict):
+    print(d1 | d2)
+
+somefn(my_1stdict, my_2nddict)
+
+my_4thdict = {k * 2: v * 2 for k, v in [('a', 'A')]}
+
+print(my_4thdict | {k * 3: v * 3 for k, v in [('a', 'A')]})
+
+# we could make this one to work (as long as the definition is in the same file)
+# but... nah
+#def retd(**kw) -> dict[str, ...]:
+def retd(**kw) -> dict:
+    return dict(**kw)
+# okay, just hack it like so
+my_5thdict: dict = retd(c='C')
+print(my_5thdict | my_2nddict)
+
+
+# now we want to test a dict that's not anymore a dict
+dct = {}
+dct = 0
+print(dct | 1)
+
+# and we don't support | chaining yet

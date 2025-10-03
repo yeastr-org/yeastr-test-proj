@@ -17,8 +17,9 @@ for pep425 in (f'py{v}-none-any' for v in ('314', '38')):
         'call2comp',
         'match_game',
         'test_match_game',
+        'backporting_dict_ops'
     )):
-        with open(f'{_filepath}.ypy', 'r') as in_:
+        with open(f'{_filepath}.pyy', 'r') as in_:
             ying = BuildTimeTransformer(in_.read(), pep425, autoimport='bootstrapped')
             with open(f'{_filepath}.py', 'w') as out:
                 out.write(ying.yang(_macros))
