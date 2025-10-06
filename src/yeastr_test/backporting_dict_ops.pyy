@@ -34,5 +34,25 @@ dct = {}
 dct = 0
 print(dct | 1)
 
-# and we don't support | chaining yet
+# and we do support | chaining
 print({} | {'a': 'A'} | {'b': 'B'})
+
+# not so fast, more tests for chaining
+print({} | {'a': 'A'} | {'b': 'B'} | {'c': 'C'})
+print({} | {'a': 'A'} | {'b': 'B'} | {'c': 'C'} | {'d': 'D'})
+
+# also when you |= instead
+chained = {'c': 'C'}
+print(chained | {'aa': 'AA'} | {'bb': 'BB'})
+chained = chained | {'aaaa': 'A'} | {'b': 'B'}
+chained |= {'a': 'A'} | {'b': 'BB'}
+chained |= {'a': 'A'} | {'b': 'BBB'} | {'d': 'D'}
+print(chained)
+
+# and also dict()
+
+also = dict()
+print(also | dict(a=3))
+also |= dict(b=2)
+also |= dict(c=1)
+print(also)
