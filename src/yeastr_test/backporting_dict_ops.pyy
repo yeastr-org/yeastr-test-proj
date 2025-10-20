@@ -56,3 +56,36 @@ print(also | dict(a=3))
 also |= dict(b=2)
 also |= dict(c=1)
 print(also)
+
+# I think I know it's broken... lets fix it
+thisone, butnotthis = {'eh': 'eh'}, 'right'
+but_last_one_is_buggy = True
+print(thisone | {'?': 'bug!'})
+if False: butnotthis | {'?': 'bug?'}
+thisone |= {'?': 'bug!'}
+if False: butnotthis |= {'?': 'bug?'}
+
+# one more test also for this
+print(dict(map(lambda x: (x, x), ['a', 'b'])) | {'c': 'c'})
+
+# ensure the hack isn't betraying
+some_flag = 3
+some_flag |= 5
+some_dict = {}
+some_dict |= {'a': 'a'}
+some_flag |= 7
+some_flag |= 7 | 15
+print(some_flag)
+
+# well, actually
+class NotDict:
+    def __init__(self):
+        self.data = {}
+    def __ior__(self, other):
+        self.data.update(other)
+        return self
+
+nd = NotDict()
+nd |= {'help': 'screwed'} | {'help': 'okok'}
+print(nd.data)
+# actually it just works :)

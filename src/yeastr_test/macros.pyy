@@ -230,3 +230,47 @@ print(color_to_code)
 # we added yr_ parameters:
 # they replace the actual parameter with the name
 # (so they don't get a binding for the macro)
+#
+
+
+
+# v0.0.2
+# ------------------------------------------------------------------------------
+# new X Y Z W macros...
+
+@def_macro(XMacro=True)
+def for_some_list():
+    "Feel free to properly describe your list"""
+    item0
+    item1
+    item2
+
+@def_macro(YMacro=True)
+def define_them(element):
+    element = element_quoted
+
+for_some_list(define_them)
+assert item0 == 'item0', 'XYMacro failed'
+
+@def_macro(expr=True)
+def maybe_255(elt):
+    # TODO: support XMacro getitem/slice/len
+    0xFF if elt == 'item1' else 0
+
+@def_macro(YMacro=True)
+def generate_item_fns(item):  # avoids the need of ##x or item_token
+    def _thisdef():
+        return item_quoted
+    globals()[f'{item_quoted}_name'] = _thisdef
+    def _thisdef():
+        return maybe_255(item_quoted)
+    globals()[f'{item_quoted}_max'] = _thisdef
+for_some_list(generate_item_fns)
+print(item0_name(), item0_max())
+print(item1_name(), item1_max())
+
+item1 = 73
+# @def_macro(YMacro=True)
+# def print_the_items():
+#     print(item_token_name(), item_token_max(), item <= item_token_max())
+# for_some_list(print_the_items)
