@@ -236,41 +236,82 @@ print(color_to_code)
 
 # v0.0.2
 # ------------------------------------------------------------------------------
-# new X Y Z W macros...
+# new X Y Z macros...
+# X macros currently limited to just one single name for each line
 
-@def_macro(XMacro=True)
+@def_macro(X)
 def for_some_list():
     "Feel free to properly describe your list"""
     item0
     item1
     item2
 
-@def_macro(YMacro=True)
+@def_macro(Y)
 def define_them(element):
     element = element_quoted
 
 for_some_list(define_them)
 assert item0 == 'item0', 'XYMacro failed'
 
-@def_macro(expr=True)
+@def_macro(E)  # expr=True
 def maybe_255(elt):
-    # TODO: support XMacro getitem/slice/len
-    0xFF if elt == 'item1' else 0
+    # TODO: support XMacro getitem/slice
+    0xFF if elt == 'item1' else 'str length -> '
 
-@def_macro(YMacro=True)
-def generate_item_fns(item):  # avoids the need of ##x or item_token
-    def _thisdef():
+@def_macro(Y)
+def generate_item_fns(item):
+    def item_token_name():
         return item_quoted
-    globals()[f'{item_quoted}_name'] = _thisdef
-    def _thisdef():
+    def item_token_max():
         return maybe_255(item_quoted)
-    globals()[f'{item_quoted}_max'] = _thisdef
+
 for_some_list(generate_item_fns)
-print(item0_name(), item0_max())
 print(item1_name(), item1_max())
 
 item1 = 73
-# @def_macro(YMacro=True)
-# def print_the_items():
-#     print(item_token_name(), item_token_max(), item <= item_token_max())
-# for_some_list(print_the_items)
+
+@def_macro(Y)
+def print_the_items(item):
+    print(item_token_name(), item_token_max(),
+        len(item) if isinstance(item, str) else item <= item_token_max())
+for_some_list(print_the_items)
+
+@def_macro(E)
+def if1_else0(x):
+    1 if x else 0
+
+
+@def_macro(Z)
+def zgen(xlist, emacro):  # this one could be standard
+    """
+    We do need a Z category of macros
+
+    xlist gets expanded into a tuple
+    emacro gets expanded in the next round
+    """
+    (emacro(x) for x in xlist)
+
+print(list(zgen(for_some_list, if1_else0)))
+
+# it is really common to assert the length of the Xmacro
+assert for_some_list(len) == 3, f'elements are now {mylist(len)}. expected 3'
+# there is no len Y macro, but you can use for_some_list name for a different reason
+# in your source (just why... so confusing) because of that, no len(for_some_list)
+# ... well, what about getitem/slicing then? drop that confusing idea
+#
+
+# and the quoted Z macro
+@def_macro(Z)
+def zgenq(xitems, e):
+    [e(xx_quoted) for xx_quoted in xitems_quoted]
+
+@def_macro(E)
+def e_tmp(itm):
+    f'{itm}.tmp'
+
+@def_macro(X)
+def somefiles():
+    data0
+    data2
+
+print(zgenq(somefiles, e_tmp))

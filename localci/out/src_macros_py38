@@ -15,5 +15,9 @@ okay
 Compare(left=Name(id='subj', ctx=Load()), ops=[Eq()], comparators=[Constant(value=3)])
 {'red': 1, 'blue': 2, 'green': 3}
 {1: 'red', 2: 'blue', 3: 'green'}
-item0 0
 item1 255
+item0 str length ->  5
+item1 255 True
+item2 str length ->  5
+[1, 1, 1]
+['data0.tmp', 'data2.tmp']
